@@ -14,14 +14,21 @@ task3 = kanban.tasks[2]
 task4 = kanban.tasks[3]
 task5 = kanban.tasks[4]
 task6 = kanban.tasks[5]
+
 #moving the task to doing state
 kanban.move_to_doing(task1["task_id"])
-kanban.move_to_doing(task2["task_id"])
-kanban.move_to_doing(task3["task_id"])
-kanban.move_to_doing(task4["task_id"])
-kanban.move_to_doing(task5["task_id"])
-kanban.move_to_doing(task6["task_id"])
 
-print(kanban.tasks)
-#showing all the tasks in all states
+#move a task to done state
+kanban.move_to_done(task1["task_id"])
+
+#listing tasks in todo state
+kanban.list_todo()
+
+#listing tasks in the doing state
+kanban.list_doing()
+
+#listing tasks in the done state
+kanban.list_done()
+
+#listing all tasks in all states 
 kanban.show_all_tasks()
