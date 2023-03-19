@@ -16,10 +16,10 @@ task5 = kanban.tasks[4]
 task6 = kanban.tasks[5]
 
 #to test if the function that finds a task by task id really works
-print(kanban.find_task_by_ID(task1["task_id"]))
+#print(kanban.find_task_by_ID(task1["task_id"]))
 
 #moving the task to doing state
-print(kanban.move_to_doing(task1["task_id"]))
+#print(kanban.move_to_doing(task1["task_id"]))
 
 #move a task to done state
 #print(kanban.move_to_done(task1["task_id"]))
