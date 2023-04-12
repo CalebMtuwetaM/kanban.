@@ -6,17 +6,20 @@ from datetime import datetime
 tasks = []
 
 #create task functionality
+# Modify create_task function to return the created task object
 def create_task(name):
-    #task name should not be empty
-    if name == "":
-        raise("task name should not be empty")
+    # Task name should not be empty
 
-    #task name should be unique
+    if name is None:
+        raise ValueError("Name cannot be None")
+    # rest of the function logic
+
+    # Task name should be unique
     for task in tasks:
-        if ["name"] == name:
-            raise("task name should be unique")
+        if task["task_name"] == name:
+            raise ValueError("Task name should be unique")
 
-    #task properties
+    # Task properties
     task = {
         "task_id" : str(uuid.uuid4()),
         "task_name" : name,
@@ -26,6 +29,7 @@ def create_task(name):
     }
 
     tasks.append(task)
+    return None
 
 #create_task("go to the gym")
 
