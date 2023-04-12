@@ -10,6 +10,8 @@ tasks = []
 def create_task(name):
     # Task name should not be empty
 
+    is_created = False
+
     if name is None:
         raise ValueError("Name cannot be None")
     # rest of the function logic
@@ -29,12 +31,15 @@ def create_task(name):
     }
 
     tasks.append(task)
+    is_created = True
+    if is_created == False:
+        raise ValueError("Task was not created")
     return None
 
-#create_task("go to the gym")
 
-#print(tasks)
-#move the task to todo state
+
+
+
 
 def move_to_todo(task_id):
     is_moved = False
@@ -44,7 +49,7 @@ def move_to_todo(task_id):
             is_moved = True
 
     if is_moved == False:
-        raise("task_id" + task_id + "is not existing")
+        raise ValueError("The task_id does not exist")
 
 #move the task to doing state
 def move_to_doing(task_id):
@@ -56,7 +61,7 @@ def move_to_doing(task_id):
             is_moving = True
 
     if is_moving == False:
-        raise("task_id" + task_id + "does not exist")
+        raise ValueError("The task_id does not exist")
 
 #move the task to done state
 
@@ -68,7 +73,7 @@ def move_to_done(task_id):
             is_done = True
 
     if is_done == False:
-        raise("task_id" + task_id + "does not exist")
+        raise ValueError ("The task_id does not exist")
 
 #list the todo tasks
 def list_todo():
