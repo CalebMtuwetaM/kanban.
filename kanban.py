@@ -1,7 +1,80 @@
 #import neccesary modules
 import uuid
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
+import os
+import MySQLdb
+import certifi
 
+
+hostname = "aws.connect.psdb.cloud"
+username = "eepuzm33qszg4vlkxmla"
+password = "pscale_pw_MvvJQff36pKONuuaH0tkEdLPvKfs4ZfTANuDCRMU7eM"
+database = "kanban"
+
+connection = MySQLdb.connect(
+    host= hostname,
+    user= username,
+    passwd= password,
+    db= database,
+    ssl  = {
+        "ssl_ca": "/etc/ssl/cert.pem"
+    }
+)
+
+
+import mysql.connector
+
+# Create a connection to the MySQL database
+connection = mysql.connector.connect(
+    host=hostname,
+    user=username,
+    password=password,
+    database=database
+)
+cursor = connection.cursor()
+
+def create_task(name):
+    # Task name should not be empty
+    if name is None:
+        raise ValueError("Name cannot be None")
+
+    # Task name should be unique
+    cursor.execute("SELECT * FROM tasks WHERE task_name = %s", (name,))
+    result = cursor.fetchone()
+    if result is not None:
+        raise ValueError("Task name should be unique")
+
+    # Task properties
+    task_id = str(uuid.uuid4())
+    created_at = datetime.now()
+    updated_at = None
+    state = "todo"
+
+    # Insert task into database
+    sql = "INSERT INTO tasks (task_id, task_name, created_at, updated_at, state) VALUES (%s, %s, %s, %s, %s)"
+    val = (task_id, name, created_at, updated_at, state)
+    cursor.execute(sql, val)
+    connection.commit()
+
+    # Retrieve inserted task from database
+    cursor.execute("SELECT * FROM tasks WHERE task_id = %s", (task_id,))
+    result = cursor.fetchone()
+
+    task = {
+        "task_id": result[0],
+        "task_name": result[1],
+        "created_at": result[2],
+        "updated_at": result[3],
+        "state": result[4]
+    }
+
+    return task
+
+
+
+"""
 #task list that is empty
 tasks = []
 
@@ -36,7 +109,7 @@ def create_task(name):
         raise ValueError("Task was not created")
     return None
 
-
+"""
 
 
 

@@ -8,12 +8,14 @@ kanban.create_task("play basketball ")
 kanban.create_task("go for interview ")
 kanban.create_task("hack systems ")
 
+"""
 task1 = kanban.tasks[0]
 task2 = kanban.tasks[1]
 task3 = kanban.tasks[2]
 task4 = kanban.tasks[3]
 task5 = kanban.tasks[4]
 task6 = kanban.tasks[5]
+"""
 
 #to test if the function that finds a task by task id really works
 #print(kanban.find_task_by_ID(task1["task_id"]))
