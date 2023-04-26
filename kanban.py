@@ -6,18 +6,19 @@ load_dotenv()
 import os
 import MySQLdb
 import certifi
+import os 
+import mysql.connector
 
 
-hostname = "aws.connect.psdb.cloud"
-username = "eepuzm33qszg4vlkxmla"
-password = "pscale_pw_MvvJQff36pKONuuaH0tkEdLPvKfs4ZfTANuDCRMU7eM"
-database = "kanban"
+
+
+
 
 connection = MySQLdb.connect(
-    host= hostname,
-    user= username,
-    passwd= password,
-    db= database,
+    host= os.getenv("hostname"),
+    user= os.getenv("username"),
+    passwd= os.getenv("password"),
+    db= os.getenv("database"),
     ssl  = {
         "ssl_ca": "/etc/ssl/cert.pem"
     }
@@ -28,10 +29,11 @@ import mysql.connector
 
 # Create a connection to the MySQL database
 connection = mysql.connector.connect(
-    host=hostname,
-    user=username,
-    password=password,
-    database=database
+    host= os.getenv("hostname"),
+    user= os.getenv("username"),
+    password= os.getenv("password"),
+    database= os.getenv("database")
+   
 )
 cursor = connection.cursor()
 
